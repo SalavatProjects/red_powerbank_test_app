@@ -24,7 +24,6 @@ class PaymentCubit extends Cubit<PaymentState> {
   final String stationId;
 
   final String _planId = dotenv.env['PLAN_ID'] ?? 'tss2';
-  // final String _stationId = 'RECH082203000350';
   final String _connectionKey = 'TEST_CONNECTION_KEY_12345';
 
   Future<void> payWithApplePay(Map<String, dynamic> res) async {
