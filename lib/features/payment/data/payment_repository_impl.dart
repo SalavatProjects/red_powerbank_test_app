@@ -34,11 +34,11 @@ class PaymentRepositoryImpl implements PaymentRepository {
   }
 
   @override
-  Future<String> addPaymentMethod({required String paymentToken}) async {
+  Future<String> addPaymentMethod({required String paymentToken, required String paymentType}) async {
     final body = {
       'paymentNonceFromTheClient': paymentToken,
-      'description': 'Apple Pay',
-      'paymentType': 'APPLE_PAY',
+      'description': 'Pay',
+      'paymentType': paymentType,
     };
 
     final response = await _paymentApi.addPaymentMethod(body);
@@ -49,10 +49,10 @@ class PaymentRepositoryImpl implements PaymentRepository {
   }
 
   @override
-  Future<void> createSubscription({required String paymentToken}) async {
+  Future<void> createSubscription({required String paymentToken, required String planId}) async {
     final body = {
       'paymentToken': paymentToken,
-      'thePlanId': dotenv.env['PLAN_ID'] ?? 'tss2',
+      'thePlanId': planId,
     };
     return await _paymentApi.createSubscriptionTransactionV2(body);
   }
