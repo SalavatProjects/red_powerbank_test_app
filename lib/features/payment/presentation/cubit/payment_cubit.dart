@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:red_powerbank_test_app/features/payment/domain/payment_repository.dart';
 import 'payment_state.dart';
@@ -50,13 +50,13 @@ class PaymentCubit extends Cubit<PaymentState> {
     );
   }
 
-  Future<void> payWithToken({required String paymentToken, String? paymentType}) async {
+  Future<void> payWithToken({String? paymentToken, String? paymentType}) async {
     emit(const PaymentState.processing());
     try {
       await _paymentRepository.ensureAccount();
-      await _paymentRepository.getClientToken();
+      final clientToken = await _paymentRepository.getClientToken();
       final paymentMethodId = await _paymentRepository.addPaymentMethod(
-          paymentToken: paymentToken,
+          paymentToken: paymentToken ?? clientToken,
           paymentType: paymentType ?? PaymentMethod.card.title
       );
       await _paymentRepository.createSubscription(

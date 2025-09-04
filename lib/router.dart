@@ -1,16 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:red_powerbank_test_app/features/success/presentation/screens/success_screen.dart';
-
 import 'features/payment/presentation/screens/payment_screen.dart';
 
 abstract class AppRouter {
+  // payment
   static const String paymentPath = '/payment';
   static const String paymentName = 'payment';
 
+  // success
   static const String successPath = 'success';
   static const String successName = 'success';
 
+  // TODO: get stationId from qr code
   static const String _stationId = 'RECH082203000350';
 
   static final GoRouter router = GoRouter(
