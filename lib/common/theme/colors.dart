@@ -3,6 +3,7 @@ part of '../theme.dart';
 abstract class AppColors {
   static const black = Color(0xff0B0B0B);
   static const grey = Color(0xff606060);
+  static const lightGrey = Color(0xffA0A0A0);
   static const white = Color(0xffffffff);
 
   static final greenGradient = [

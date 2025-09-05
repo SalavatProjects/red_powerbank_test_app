@@ -9,7 +9,7 @@ abstract class AppRouter {
   static const String paymentName = 'payment';
 
   // success
-  static const String successPath = 'success';
+  static const String successPath = '/success';
   static const String successName = 'success';
 
   // TODO: get stationId from qr code
@@ -28,15 +28,13 @@ abstract class AppRouter {
                 throw Exception('stationId is required');
               }
               return PaymentScreen(stationId: stationId);
-            },
-            routes: [
-              GoRoute(
-                path: successPath,
-                name: successName,
-                builder: (BuildContext context, GoRouterState state) {
-                  return SuccessScreen();
-                },
-              )
-            ]),
+            },),
+        GoRoute(
+          path: successPath,
+          name: successName,
+          builder: (BuildContext context, GoRouterState state) {
+            return SuccessScreen();
+          },
+        )
       ]);
 }

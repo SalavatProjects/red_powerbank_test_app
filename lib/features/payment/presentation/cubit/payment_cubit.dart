@@ -23,7 +23,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   final PaymentRepository _paymentRepository;
   final String stationId;
 
-  final String _planId = dotenv.env['PLAN_ID'] ?? 'tss2';
+  final String _planId = dotenv.get('PLAN_ID');
   final String _connectionKey = 'TEST_CONNECTION_KEY_12345';
 
   Future<void> payWithApplePay(Map<String, dynamic> res) async {
@@ -32,7 +32,7 @@ class PaymentCubit extends Cubit<PaymentState> {
       emit(const PaymentState.error('Failed to extract Apple Pay token'));
       return;
     }
-    await payWithToken(
+    await payViaCard(
         paymentToken: paymentToken,
         paymentType: PaymentMethod.applePay.title,
     );
@@ -44,13 +44,13 @@ class PaymentCubit extends Cubit<PaymentState> {
       emit(const PaymentState.error('Failed to extract Google Pay token'));
       return;
     }
-    await payWithToken(
+    await payViaCard(
         paymentToken: paymentToken,
         paymentType: PaymentMethod.googlePay.title,
     );
   }
 
-  Future<void> payWithToken({String? paymentToken, String? paymentType}) async {
+  Future<void> payViaCard({String? paymentToken, String? paymentType}) async {
     emit(const PaymentState.processing());
     try {
       await _paymentRepository.ensureAccount();

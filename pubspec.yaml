@@ -44,6 +44,8 @@ flutter:
     - .env
     - assets/images/
     - assets/icons/
+    - assets/fonts/
+    - assets/json/
 
   fonts:
     - family: 'Inter'
@@ -52,7 +54,3 @@ flutter:
           weight: 400
         - asset: assets/fonts/Inter_18pt-Light.ttf
           weight: 300
-
-flutter_gen:
-  output: lib/gen/
-  line_length: 80

@@ -37,13 +37,13 @@ class $PaymentStateCopyWith<$Res> {
 
 /// @nodoc
 
-class _Initial implements PaymentState {
-  const _Initial();
+class Initial implements PaymentState {
+  const Initial();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is Initial);
   }
 
   @override
@@ -57,13 +57,13 @@ class _Initial implements PaymentState {
 
 /// @nodoc
 
-class _Processing implements PaymentState {
-  const _Processing();
+class Processing implements PaymentState {
+  const Processing();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Processing);
+        (other.runtimeType == runtimeType && other is Processing);
   }
 
   @override
@@ -77,13 +77,13 @@ class _Processing implements PaymentState {
 
 /// @nodoc
 
-class _Success implements PaymentState {
-  const _Success();
+class Success implements PaymentState {
+  const Success();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Success);
+        (other.runtimeType == runtimeType && other is Success);
   }
 
   @override
@@ -97,8 +97,8 @@ class _Success implements PaymentState {
 
 /// @nodoc
 
-class _Error implements PaymentState {
-  const _Error(this.message);
+class Error implements PaymentState {
+  const Error(this.message);
 
   final String message;
 
@@ -106,14 +106,14 @@ class _Error implements PaymentState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @pragma('vm:prefer-inline')
-  _$ErrorCopyWith<_Error> get copyWith =>
-      __$ErrorCopyWithImpl<_Error>(this, _$identity);
+  $ErrorCopyWith<Error> get copyWith =>
+      _$ErrorCopyWithImpl<Error>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Error &&
+            other is Error &&
             (identical(other.message, message) || other.message == message));
   }
 
@@ -127,20 +127,20 @@ class _Error implements PaymentState {
 }
 
 /// @nodoc
-abstract mixin class _$ErrorCopyWith<$Res>
+abstract mixin class $ErrorCopyWith<$Res>
     implements $PaymentStateCopyWith<$Res> {
-  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) =
-      __$ErrorCopyWithImpl;
+  factory $ErrorCopyWith(Error value, $Res Function(Error) _then) =
+      _$ErrorCopyWithImpl;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
-  __$ErrorCopyWithImpl(this._self, this._then);
+class _$ErrorCopyWithImpl<$Res> implements $ErrorCopyWith<$Res> {
+  _$ErrorCopyWithImpl(this._self, this._then);
 
-  final _Error _self;
-  final $Res Function(_Error) _then;
+  final Error _self;
+  final $Res Function(Error) _then;
 
   /// Create a copy of PaymentState
   /// with the given fields replaced by the non-null parameter values.
@@ -148,7 +148,7 @@ class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
   $Res call({
     Object? message = null,
   }) {
-    return _then(_Error(
+    return _then(Error(
       null == message
           ? _self.message
           : message // ignore: cast_nullable_to_non_nullable

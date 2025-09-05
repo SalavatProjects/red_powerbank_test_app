@@ -3,7 +3,9 @@
     <application
         android:label="red_powerbank_test_app"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:enableOnBackInvokeCallback="true"
+        >
         <activity
             android:name=".MainActivity"
             android:exported="true"
