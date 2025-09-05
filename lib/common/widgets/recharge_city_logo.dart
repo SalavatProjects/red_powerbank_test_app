@@ -19,7 +19,7 @@ class RechargeCityLogo extends StatelessWidget {
 }
 
 class _LogoSquare extends StatelessWidget {
-  const _LogoSquare({super.key});
+  const _LogoSquare();
 
   final List<Color> _gradientColors = const [
     Color(0xffF9FD57),

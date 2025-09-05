@@ -37,7 +37,6 @@ class _PaymentScreen extends StatelessWidget {
   final String stationId;
 
   const _PaymentScreen({
-    super.key,
     required this.stationId,
   });
 
@@ -79,9 +78,9 @@ class _PaymentScreen extends StatelessWidget {
                           context: context,
                           child: PaymentBottomSheetContent(
                             onPressed: () {
-                              // context.pop();
-                              context.goNamed(AppRouter.successName);
-                              // context.read<PaymentCubit>().payViaCard();
+                              context.pop();
+                              // context.goNamed(AppRouter.successName);
+                              context.read<PaymentCubit>().payViaCard();
                             },
                           )),
                       type: PaymentButtonType.card,
