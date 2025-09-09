@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:red_powerbank_test_app/features/payment/domain/payment_repository.dart';
+import 'package:red_powerbank_test_app/features/payment/utils/braintree_utils.dart';
 import 'payment_state.dart';
 
 enum PaymentMethod {
@@ -54,9 +55,15 @@ class PaymentCubit extends Cubit<PaymentState> {
     emit(const PaymentState.processing());
     try {
       await _paymentRepository.ensureAccount();
-      final clientToken = await _paymentRepository.getClientToken();
+      // final clientToken = await _paymentRepository.getClientToken();
+      final clientToken = await _paymentRepository.updateClientToken();
+      /*final nonce = await getBraintreeDropInNonce(clientToken: clientToken);
+      if (nonce == null || nonce.isEmpty) {
+        emit(const PaymentState.error('Failed to obtain payment nonce'));
+        return;
+      }*/
       final paymentMethodId = await _paymentRepository.addPaymentMethod(
-          paymentToken: paymentToken ?? clientToken,
+          paymentToken: clientToken,
           paymentType: paymentType ?? PaymentMethod.card.title
       );
       await _paymentRepository.createSubscription(

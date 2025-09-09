@@ -2,6 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:red_powerbank_test_app/features/success/presentation/screens/success_screen.dart';
 import 'features/payment/presentation/screens/payment_screen.dart';
+import 'dart:developer' as dev;
+
+class _DeepLinkObserver extends NavigatorObserver {
+  @override
+  void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    super.didPush(route, previousRoute);
+    dev.log('[NAV] push -> ${route.settings.name ?? route.settings.arguments}');
+  }
+
+  @override
+  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    super.didPop(route, previousRoute);
+    dev.log('[NAV] pop  <- ${route.settings.name}');
+  }
+}
 
 abstract class AppRouter {
   // payment
@@ -17,7 +32,13 @@ abstract class AppRouter {
 
   static final GoRouter router = GoRouter(
       debugLogDiagnostics: true, // TODO: remove in production
+      observers: [_DeepLinkObserver()],
       initialLocation: '$paymentPath?stationId=$_stationId',
+      redirect: (context, state) {
+        final location = state.uri.toString();
+        dev.log('[ROUTER] redirect -> $location');
+        return null;
+      },
       routes: [
         GoRoute(
             path: paymentPath,

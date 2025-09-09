@@ -9,7 +9,10 @@ abstract class DioNetwork {
       connectTimeout: const Duration(seconds: 10),
       receiveTimeout: const Duration(seconds: 10),
     ))..interceptors.add(
-        PrettyDioLogger(responseBody: true, requestBody: true));
+        PrettyDioLogger(
+            requestHeader: true,
+            responseBody: true,
+            requestBody: true));
     return dio;
   }
 

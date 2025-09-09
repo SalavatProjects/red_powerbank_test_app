@@ -68,11 +68,12 @@ class _PaymentScreen extends StatelessWidget {
                     SizedBox(height: 48.w),
                     PaymentDescription(),
                     SizedBox(height: 14.w),
-                    // TODO: Uncomment Apple Pay button when testing on iOS device
-                    /*PaymentButton(
-                  onPressed: () {},
+                    PaymentButton(
+                  onPressed: () {
+                    // context.read<PaymentCubit>().payWithApplePay(res);
+                  },
                   type: PaymentButtonType.applePay,
-              ),*/
+              ),
                     PaymentButton(
                       onPressed: () => showAppModalBottomSheet(
                           context: context,

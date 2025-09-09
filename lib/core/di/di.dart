@@ -8,10 +8,12 @@ import 'package:red_powerbank_test_app/features/payment/data/payment_repository_
 final getIt = GetIt.instance;
 
 Future<void> initDi() async {
-  getIt.registerLazySingleton<Dio>(DioNetwork.createDio);
-  getIt.registerLazySingleton<PaymentApi>(() => PaymentApi(getIt<Dio>()));
+  final dio = DioNetwork.createDio();
+
+  getIt.registerLazySingleton<Dio>(() => dio);
+  getIt.registerLazySingleton<PaymentApi>(() => PaymentApi(dio));
   getIt.registerLazySingleton<PaymentRepository>(() => PaymentRepositoryImpl(
         paymentApi: getIt<PaymentApi>(),
-        dio: getIt<Dio>(),
+        dio: dio,
       ));
 }
