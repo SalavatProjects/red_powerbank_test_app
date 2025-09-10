@@ -55,8 +55,8 @@ class PaymentCubit extends Cubit<PaymentState> {
     emit(const PaymentState.processing());
     try {
       await _paymentRepository.ensureAccount();
-      // final clientToken = await _paymentRepository.getClientToken();
-      final clientToken = await _paymentRepository.updateClientToken();
+      final clientToken = await _paymentRepository.getClientToken();
+      // final clientToken = await _paymentRepository.updateClientToken();
       /*final nonce = await getBraintreeDropInNonce(clientToken: clientToken);
       if (nonce == null || nonce.isEmpty) {
         emit(const PaymentState.error('Failed to obtain payment nonce'));

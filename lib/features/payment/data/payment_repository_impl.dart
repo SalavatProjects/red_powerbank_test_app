@@ -70,7 +70,7 @@ class PaymentRepositoryImpl implements PaymentRepository {
           'description': nonce.description,
           'paymentType': nonce.typeLabel,
         };
-        dev.log('Attempt ${attempt + 1}: Adding payment method with body: $body');
+        // dev.log('Attempt ${attempt + 1}: Adding payment method with body: $body');
         final response = await _paymentApi.addPaymentMethod(_accessJwt, body);
         if (response.isEmpty) {
           throw Exception('Failed to add payment method: response is empty');
